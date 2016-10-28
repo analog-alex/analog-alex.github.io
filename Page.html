@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>page</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!-- jQuery library (latest) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+    <!-- local JavaScript  -->
+    <script src="Engine.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <!-- local CSS file -->
+    <link rel="stylesheet" href="Style.css"/>
+                               
+</head>    
+<body>
+
+    <div class="jumbotron text-center">
+        <div id="title_slide">
+            
+            <h1>Cog Mind</h1>
+            <h3>Our business is learning</h3> 
+            <h3>Our business is thinking</h3>
+            
+        </div>    
+        
+    </div>
+                
+    <!-- Carousel -->
+    <div class="container">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+                <div class="item active" align="center">
+                    <p>this is text0</p>
+                    <p>this is text0</p>
+                    <p>this is text0</p>
+                </div>
+
+                <div class="item" align="center">
+                    <p>this is text</p>
+                    <p>this is text</p>
+                    <p>this is text</p>
+                </div>
+
+                <div class="item" align="center">
+                    <p>this is text2</p>
+                    <p>this is text</p>
+                    <p>this is text</p>
+                </div>
+
+                <div class="item" align="center">
+                    <p>this is text3</p>
+                    <p>this is text</p>
+                    <p>this is text</p>
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left red" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right red" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+       </div>
+     </div>
+       
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Column 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Column 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Column 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+      </div>
+    </div>
+    
+    <br/>
+    
+    <div class="container" id="the-drag-container">
+        <div class="well">
+            
+            <div id="draggable" class="draggable">
+            <div class="top-corner" id="drag-exit">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+                <br/>
+                <p>DRAG ME!</p>
+                <p>C'mon try it!</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <br/>
+    
+    <div class="container">
+        <h3>quotes:</h3>
+        <blockquote>
+            <p>It seems probable that once the machine thinking method had started, it would not take long to outstrip our feeble powers.</p>
+            <footer>Alan Turing, during a lecture in  1951</footer>
+        </blockquote>
+    </div>
+    
+    <br/>
+    
+    <div class="container">
+        <code>
+            if (x == 2)<br/>
+            {<br/>
+                &nbsp; std::cout << "Somethint went wrong..." << std::endl;<br/>
+                &nbsp;  return false;<br/>
+            }<br/>
+        </code>
+    </div>
+    
+    
+    <div class="container">
+        <script src="https://gist.github.com/ddemidov/2925717.js"></script>
+    </div>
+    
+    <!-- The Validation Button! 
+    <div class="container">
+        <p>
+            We all need some validation every once in a while, don't we? Don't answer, that was rethorical.
+            Let's focus, why not, on the fascinating and endless possibilities of computers and the web.
+            Please, don't be shy, make yourself at home and press that button like your life depends on it.
+        </p>
+        <button id="ValidationButton">Validate Me!</button>
+    </div> -->
+    
+    
+</body>
+</html>
