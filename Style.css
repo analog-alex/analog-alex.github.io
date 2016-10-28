@@ -1,0 +1,110 @@
+body 
+{
+    background: url("back-white-grey.jpg");
+}
+
+h1
+{
+    font-family: 'Raleway', sans-serif;
+}
+
+h3
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+p
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Take care of the carousel style --------- */
+.carousel 
+{
+        background-color: transparent;
+        position: relative;
+        padding: 10px;     /* Shows as a border around the carousel */
+        border: none;
+}
+
+.carousel-indicators
+{
+  bottom:-10px;
+}
+.carousel-inner 
+{
+   margin-bottom:50px;
+}
+.carousel-control.left, .carousel-control.right {
+        background-image: none;
+        border: none;
+}
+.carousel-indicators li 
+{
+    background-color: transparent;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);    
+}
+
+.carousel-indicators .active 
+{
+    
+    background-color: lightcoral;
+}
+.red {
+    color: lightcoral;
+}
+
+/*------------------------------------------*/
+.col-sm-4
+{
+    border-right: 1px solid #eee;
+    border-top: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+/* Add shadows on hover */
+.col-sm-4:hover 
+{
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+/*--------------------------------*/
+#the-drag-container
+{
+    max-width: 50%;
+}
+#draggable
+{
+    border: solid 1px white;
+    width: 100px;
+    height: 100px;
+    align-content: left;
+    z-index: 10000;
+}
+
+/* Add shadows on hover */
+#draggable:hover 
+{
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+/* handle cross on draggable div*/
+.top-corner
+{
+    position:absolute;
+    top:10px;
+    right: 10px;
+    padding: none;
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.top-corner:hover {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
