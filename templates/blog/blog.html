@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  {{ section.title }}
-</h1>
+<h1>{{ section.title }}</h1>
+{% for year, pages in section.pages | group_by(attribute="year") %}
+<h2>{{ year }}</h2>
 <ul>
-  {% for page in section.pages %}
+  {% for page in pages %}
   <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
   {% endfor %}
 </ul>
+{% endfor %}
 {% endblock content %}

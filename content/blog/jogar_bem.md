@@ -1,10 +1,9 @@
 +++
-title = "[PT] Jogar Bem"
+title = "Jogar Bem"
 date = 2018-07-17
+year = 2017
+language = "PT"
 +++
-
-
-### [An oldie from another age]
 
 Admito, fiquei surpreendido com o palavreado de Fernando Santos após aquele **rastejante jogo contra Marrocos**. Estava perfeitamente ciente das debilidades apresentadas pela equipa e não se poupou em tornar o seu desgosto público. Deu eco ao que todos as pessoas com sanidade mental comentaram para si e para os seus depois do encontro.
 
