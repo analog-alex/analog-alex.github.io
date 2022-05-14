@@ -6,6 +6,9 @@
   font-family: 'roboto'
   src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
 
+/* variables */
+$breakpoint-dimension: 768px;
+
 /* general tags */
 
 p
@@ -17,7 +20,6 @@ h1
 
 h2
   font-family: 'raleway'
-
 
 h3
   font-family: 'raleway'  
@@ -32,29 +34,70 @@ body
 
 /* general class structure */
 
-.icons-list
-  text-align: center
+/******/
+Desktop classes
+/******/
 
-.container
-  display: block
-  margin-left: auto
-  margin-right: auto
-  width: 50%
+@media (min-width: $breakpoint-dimension)
+  .container
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 50%
 
-.header
-  text-align: center
-  padding-top: 10px
-  height: 180px
-  margin-bottom: 40px
-  background-color: #ffcc00
-  box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
+  .header
+    text-align: center
+    padding-top: 10px
+    height: 180px
+    margin-bottom: 40px
+    background-color: #ffcc00
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
 
-.banner
-  font-family: 'raleway'
-  font-size: 100px
-  font-weight: bold
+  .banner
+    font-family: 'raleway'
+    font-size: 80px
+    font-weight: bold
 
-.footer
-  height: 80px
-  text-align: center
-  padding-top: 10px
+  .icons-list
+    text-align: center
+
+  .footer
+    height: 80px
+    text-align: center
+    padding-top: 10px
+
+
+/******/
+Phone and Tablet classes
+/******/
+
+@media (max-width: $breakpoint-dimension)
+  .container
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 90%
+
+  .header
+    text-align: center
+    padding-top: 10px
+    height: 80px
+    margin-bottom: 40px
+    background-color: #ffcc00
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
+
+  .banner
+    font-family: 'raleway'
+    font-size: 40px
+    font-weight: bold
+
+  .subbanner
+    font-size: 10px
+
+  .icons-list
+    text-align: center
+
+  .footer
+    height: 80px
+    text-align: center
+    padding-top: 10px
