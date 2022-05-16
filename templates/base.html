@@ -7,21 +7,76 @@
   <link rel="stylesheet" href="{{ get_url(path="style.css", cachebust=true) }}">
   <link rel="stylesheet" href="{{ get_url(path="list.css", cachebust=true) }}">
   <link rel="stylesheet" href="{{ get_url(path="blog-page.css", cachebust=true) }}">
+  <script>
+    var checkForPreference = () => {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    var readCookieAsBoolean = () => {
+      var cookie = document.cookie;
+      if (cookie != undefined) {
+        var split = cookie.split('=');
+        if (split.length > 1) {
+          if (split[1] == 'true') {
+            return true
+          } else {
+            return false
+          }
+        }
+      }
+      return checkForPreference();
+    };
+
+    var setTheme = (dark) => {
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (document.cookie !== "isDark=true") {
+          document.cookie = "isDark=true";
+        }
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (document.cookie !== "isDark=false") {
+          document.cookie = "isDark=false";
+        }
+      }
+    }
+
+    window.addEventListener('load', function () {
+      var isDark = readCookieAsBoolean()
+      setTheme(isDark)
+
+      var checkbox = document.querySelector('#switch');
+
+      if (checkbox == null) {
+        return
+      }
+
+      // stolen from https://codepen.io/KaioRocha/pen/MdvWmg
+
+      if (isDark) {
+        checkbox.checked = true;
+      }
+
+      checkbox.addEventListener('change', function () {
+        setTheme(this.checked);
+      })
+    })
+  </script>
 </head>
 
 <body>
-    <header class="header">
-      <span class="banner"><a style="color: black; text-decoration: none;" href="/">Analog Alex</a></span>
-      <p class="subbanner">regular updates</p>
-    </header>
-    <section class="container">
-      {% block content %} {% endblock %}
-    </section>
-    <footer class="footer">
-        <p class="info-text">Made by Miguel Alexandre</p>
-        <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> -- ❤️ static websites</p>
-        <p class="info-text">in @2022</p>
-    </footer>
+  <header class="header">
+    <span class="banner"><a class="banner-link" href="/">Analog Alex</a></span>
+    <p class="subbanner">regular updates</p>
+  </header>
+  <section class="container">
+    {% block content %} {% endblock %}
+  </section>
+  <footer class="footer">
+    <p class="info-text">Made by Miguel Alexandre</p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">in @2022</p>
+  </footer>
 </body>
 
 </html>
