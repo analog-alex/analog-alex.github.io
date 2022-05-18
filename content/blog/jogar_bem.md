@@ -13,7 +13,7 @@ Ah e tal, _teve 61% de posse de bola e rematou mais_. Ok, ok. Qual foi a grande 
 
 Porque o jogar bem é uma coisa completamente diferente.
 
-<img src="../portugal_uruguai.jpg" width="600" height="400" />
+<img src="../portugal_uruguai.jpg" width="600" height="400" style="max-width: 100%" />
 
 **O Futebol é um jogo de espaços**. A desmarcação, o arrastar dos defesas, o passe nas costas, a variância de jogo, a tabelinha a libertar o avançado, o lateral a fazer overlap ao ala…, enfim mil e uma coisas que a selecção simplesmente não faz. Faz chuveirinho, mil-e-um cruzamentos para ninguém na área, tudo intercalado com o ocasional remate de fora da área, mas não mais do que isso. Em resumo: Portugal não joga bem. Faz 20 remates contra 6 do Uruguai mas no alvo apenas 5 contra 3. E se o Uruguai precisasse de marcar mais um (porque, sei lá, um remate do Ronaldo a 30 metros por graça de Deus ia parar lá dentro) tenho na minha ideia que facilmente o iria marcar.
 

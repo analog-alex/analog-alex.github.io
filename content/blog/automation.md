@@ -5,12 +5,12 @@ year = 2022
 language = "EN"
 +++
 
-<img src="../robot.jpg" width="600" height="400" />
-
 I don't think it is unfair to remark that there exists, presently, a generalized and atavistic way to look at the progress of automation and how it has and will affect the labour market, particularly the area it has a greater impact
 on.
 
 Part of the issue is that people are dawned into the big and obvious semantic signifiers like humanoid robots and large mechanical arms in assembly lines when they envision what automation must look like, leading them predicting the end of manual or low-paid service jobs, to be replaced by an army of bipedal androids or something similar, while retaining the office (white-collar) jobs as a somewhat safe bet. But the word automation should also bring to bear a security camera with an image recognition algorithm behind it, a payroll processing software, an Excel spreadsheet, a stock-trading virtual bot, etc... In many ways those jobs are not safe at all; worse still, they may be even in more jeopardy than others.
+
+<img src="../robot.jpg" width="600" height="400" style="max-width: 100%" />
 
 The notion of "easy to automate physical task" versus a "hard to automate mental task" is, I believe, somewhat misguided. It is actually easier to replace pure symbolic analysis tasks than any physical ones: the cost of a physical actuator will probably be greater than the cost of CPU cycles (which trends towards the dirt cheap specially with charge on-use only policies provided by cloud computing providers). The costs saved in automating a paper-pushing office job is also greater than the one saved by automating someone who is stacking shelves at the local supermarket, making it more of a priority for firms.
 
