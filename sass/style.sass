@@ -6,7 +6,47 @@
   font-family: 'roboto'
   src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
 
+/* variables */
+$breakpoint-dimension: 768px;
+
+$background-color: #F0F0F0
+$background-color-dark: #232323
+
+$text-color: #000000
+$text-color-dark: #F0F0F0
+
+$footer-text-color: #2F4F4F
+$footer-text-color-dark: #F0F0F0
+
+$banner-color: #ffcc00   
+$banner-color-dark: #222222 
+
+html[data-theme="light"] 
+  --color-background: #{$background-color}
+  --color-text: #{$text-color}
+  --color-footer-text: #{$footer-text-color}
+  --banner-color: #{$banner-color}
+  --lightBtn: #FE016C
+  --lightBg: #fff
+  --lightColor: #232323
+
+
+html[data-theme="dark"] 
+  --color-background: #{$background-color-dark}
+  --color-text: #{$text-color-dark}
+  --color-footer-text: #{$footer-text-color-dark}
+  --banner-color: #{$banner-color-dark}
+  --lightBtn: #FFBD07
+  --lightBg: #232323
+  --lightColor: #fff
+
+
 /* general tags */
+
+
+a
+  color: var(--color-text)
+  font-family: 'roboto'
 
 p
   font-family: 'roboto'
@@ -18,43 +58,149 @@ h1
 h2
   font-family: 'raleway'
 
-
 h3
   font-family: 'raleway'  
 
 body
+  min-height: 100vh
   margin: 0px
-  background-color: #F0F0F0
+  display: flex
+  flex-direction: column
+  color: var(--color-text)
+  background-color: var(--color-background)
 
 .info-text
-  font-size: 10px
-  color: gray
+  font-family: 'raleway'
+  font-size: 12px
+  color: var(--color-footer-text)
+
+.icon
+  filter: invert(1)
 
 /* general class structure */
 
-.icons-list
-  text-align: center
+/******/
+Desktop classes
+/******/
 
-.container
-  display: block
-  margin-left: auto
-  margin-right: auto
-  width: 50%
+@media (min-width: $breakpoint-dimension)
+  .container
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 50%
 
-.header
-  text-align: center
-  padding-top: 10px
-  height: 180px
-  margin-bottom: 40px
-  background-color: #ffcc00
-  box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
+  .header
+    text-align: center
+    padding-top: 10px
+    height: 180px
+    margin-bottom: 40px
+    background-color: var(--banner-color)
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
 
-.banner
-  font-family: 'raleway'
-  font-size: 100px
-  font-weight: bold
+  .banner
+    font-family: 'raleway'
+    font-size: 80px
+    color: var(--color-text)
+    font-weight: bold
 
-.footer
-  height: 80px
-  text-align: center
-  padding-top: 10px
+  .icons-list
+    text-align: center
+
+  .footer
+    margin-top: auto
+    height: 120px
+    text-align: center
+
+
+/******/
+Phone and Tablet classes
+/******/
+
+@media (max-width: $breakpoint-dimension)
+  .container
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 90%
+
+  .header
+    text-align: center
+    padding-top: 10px
+    height: 80px
+    margin-bottom: 40px
+    background-color: var(--banner-color)
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
+
+  .banner
+    font-family: 'raleway'
+    font-size: 40px
+    color: var(--color-text)
+    font-weight: bold
+
+  .subbanner
+    font-size: 10px
+
+  .icons-list
+    text-align: center
+
+  .footer
+    margin-top: auto
+    height: 120px
+    text-align: center
+    padding-top: 10px
+
+
+.banner-link
+  color: var(--color-text) !important
+  text-decoration: none
+
+/* checkbox */
+input[type=checkbox] 
+  height: 0
+  width: 0
+  visibility: hidden
+
+label 
+  cursor: pointer
+  text-indent: -9999px
+  width: 55px
+  height: 30px
+  background: var(--lightBtn)
+  display: flex
+  justify-content: center
+  align-items: center
+  -webkit-border-radius: 100px
+  -moz-border-radius: 100px
+  border-radius: 100px
+  position: relative
+
+
+label:after 
+  content: ''
+  background: #fff
+  width: 20px
+  height: 20px
+  -webkit-border-radius: 50%
+  -moz-border-radius: 50%
+  border-radius: 50%
+  position: absolute
+  top: 5px
+  left: 4px
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms
+
+
+input:checked + label 
+  background: #FFBD07
+
+
+input:checked + label:after 
+  left: calc(100% - 5px)
+  -webkit-transform: translateX(-100%)
+  -moz-transform: translateX(-100%)
+  -ms-transform: translateX(-100%)
+  -o-transform: translateX(-100%)
+  transform: translateX(-100%)
+
+.switch-info
+  margin-bottom: 0px
