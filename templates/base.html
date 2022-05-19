@@ -13,58 +13,27 @@
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
-    var readCookieAsBoolean = () => {
-      var cookie = document.cookie;
-      if (cookie != undefined) {
-        var split = cookie.split('=');
-        if (split.length > 1) {
-          if (split[1] == 'true') {
-            return true
-          } else {
-            return false
-          }
-        }
-      }
-      return checkForPreference();
-    };
-
     var setTheme = (dark) => {
       if (dark) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        if (document.cookie !== "isDark=true") {
-          document.cookie = "isDark=true";
-        }
+        ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6' ].forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-dark");
+        });
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        if (document.cookie !== "isDark=false") {
-          document.cookie = "isDark=false";
-        }
+        ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6' ].forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-light");
+        });
       }
     }
 
     window.addEventListener('load', function () {
-      var isDark = readCookieAsBoolean()
-      setTheme(isDark)
+      setTheme(checkForPreference())
+    });
 
-
-      /*
-      var checkbox = document.querySelector('#switch');
-
-      if (checkbox == null) {
-        return
-      }
-
-      // stolen from https://codepen.io/KaioRocha/pen/MdvWmg
-
-      if (isDark) {
-        checkbox.checked = true;
-      }
-
-      checkbox.addEventListener('change', function () {
-        setTheme(this.checked);
-      })
-      */
-    })
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        setTheme(event.matches);
+    });
   </script>
 </head>
 
