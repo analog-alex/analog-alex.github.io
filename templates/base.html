@@ -9,30 +9,35 @@
   <link rel="stylesheet" href="{{ get_url(path="list.css", cachebust=true) }}">
   <link rel="stylesheet" href="{{ get_url(path="blog-page.css", cachebust=true) }}">
   <script>
+    // function that checks for the user preference for a dark mode
     var checkForPreference = () => {
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
+    // function that sets SASS values and icons color depending on the preference -- boolean 'dark'
     var setTheme = (dark) => {
+      icons = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6']
+
       if (dark) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6' ].forEach(x => {
+        icons.forEach(x => {
           document.getElementById(x).setAttribute( "class", "icon-dark");
         });
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6' ].forEach(x => {
+        icons.forEach(x => {
           document.getElementById(x).setAttribute( "class", "icon-light");
         });
       }
     }
 
-    window.addEventListener('load', function () {
-      setTheme(checkForPreference())
-    });
-
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         setTheme(event.matches);
+    });
+
+    // first thing is to set the theme, either light of dark mode
+    window.addEventListener('load', function () {
+      setTheme(checkForPreference())
     });
   </script>
 </head>
@@ -40,7 +45,7 @@
 <body>
   <header class="header">
     <span class="banner"><a class="banner-link" href="/">Analog Alex</a></span>
-    <p class="subbanner">regular updates</p>
+    <p class="subbanner">Regular Updates</p>
   </header>
   <section class="container">
     {% block content %} {% endblock %}
