@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=f53db86a1380e7b64ec2">
+  <link rel="stylesheet" href="https://analog-alex.github.io/list.css?h=cb84a49eae86eda412d5">
+  <link rel="stylesheet" href="https://analog-alex.github.io/blog-page.css?h=8c725e40fdc86dd3a578">
+  <script>
+    // function that checks for the user preference for a dark mode
+    var checkForPreference = () => {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    // function that sets SASS values and icons color depending on the preference -- boolean 'dark'
+    var setTheme = (dark) => {
+      icons = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6']
+
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        icons.forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-dark");
+        });
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        icons.forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-light");
+        });
+      }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        setTheme(event.matches);
+    });
+
+    // first thing is to set the theme, either light of dark mode
+    window.addEventListener('load', function () {
+      setTheme(checkForPreference())
+    });
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <span class="banner"><a class="banner-link" href="/">Analog Alex</a></span>
+    <p class="subbanner">Regular Updates</p>
+  </header>
+  <section class="container">
+    
+<p class="date-line">2022-05-04</p>
+<h1 class="title">
+  Yes, you will be automated
+</h1>
+<div class="article-body"><p>I don't think it is unfair to remark that there exists, presently, a generalized and atavistic way to look at the progress of automation and how it has and will affect the labour market, particularly the areas it will have a greater impact on.</p>
+<p>Part of the issue is that people are drawned to the big and obvious semantic signifiers: humanoid robots and large mechanical arms in assembly lines. This leads them predicting the end of manual or low-paid service jobs, to be replaced by an army of bipedal androids or something similar in scope, on one hand, while on the other re-affirming the permanence (or higher resistance) of office (read white-collar) jobs. </p>
+<p><strong>That analysis is wrong.</strong> I have a contrary thesis. In many ways those jobs are not safe at all; worse still, they may be even in more jeopardy than others. The word automation should also bring to bear a security camera with an image recognition algorithm behind it, a payroll processing software, an Excel spreadsheet, a stock-trading virtual bot, etc... </p>
+<p><strong>Computers are good at processing data</strong> Therefore jobs that are only <strong>focused on processing data</strong> are more in danger than the others. Jobs that require the motion of atoms in addition to the motion of bits will prove to be trickier to automate.</p>
+<p>Putting it another way: the advantages humans have over AI and Neural Networks is not some special &quot;creativity&quot; that the elect few posses. It is more <strong>how efficent our bodies are at navigating space</strong>. </p>
+<p>A third way to put this is that <strong>CPUs are cheap, physical actuators are expensive</strong>. The algos may be complex but they only need to be discovered once -- after that, replicating them x1000 is trivial and cost-effective. </p>
+<img src="../robot.jpg" width="600" height="400" style="max-width: 100%" />
+<p>The notion of &quot;easy to automate physical task&quot; versus a &quot;hard to automate mental task&quot; is, I believe, somewhat misguided. It is actually easier to replace pure symbolic analysis tasks than any physical ones. I reaffirm: the cost of a physical actuator will probably be greater than the cost of CPU cycles (which trends towards the dirt cheap specially with charge on-use only policies provided by cloud computing providers). The costs saved in automating a paper-pushing office job are also greater than the ones saved by automating someone who is stacking shelves at the local supermarket, making it more of a priority for firms hoping to get efficiency gains and increase margins.</p>
+<p>So is the <strong>range of automation.</strong> This is also, I believe, due to a failure of imagination. Usually, one imagines that the only possible way to automate a job is to find a machine that can do the exact same thing, step-by-step, as it exists today -- imagining that a robot doctor must also walk around with a white coat and a stethoscope -- whereas in reality machines and software can solve tasks in novel ways that don't require human intervention or greatly increase the capacity of a single person while displacing ten times more. A doctor may be replaced by wearable devices that hook up to servers that store and process health data, giving back advice on dietary and exercise habits, diagnostic information and even disease detection. Some human supervision may be initially required and this last step may be very, very hard to fully automate but while <strong>I expected it to be quite difficult to automate all the doctors or all the lawyers in the world, it may prove to be relatively easy to automate 80% to 90% of all doctors and lawyers in the world.</strong></p>
+<p>As an side note, several fields are already evolving towards a type of <strong>winner-take all market</strong> -- think pop-stars or chefs -- and most professional employment will follow those trends. Google may still have software engineers, but it may need only 10 super productive ones taking 1 million USD in TC, leveraging all sorts of software-generating ML/AI solutions instead of 100 taking 200k. Spin up an instance on AWS that runs the work of a small battalion of big law firm clerks and the top attorneys can handle even big mergers without needing to hire more people. Cheap CPU power allied with Deep Learning models can quickly become economically more viable that high wages for highly specialized work. Specially since those models can themselves be trained and tuned to specific fields.</p>
+<p>Further still, all the demand for services that is created by the office works running around urban downtown's all day will fall, given that there will be less office workers to demand them, tanking low skilled service jobs with them.</p>
+<p><strong>It might be that slightly skilled manual labor will be the last job class to be wiped out.</strong> </p>
+<p>What remains? Ownership, of course. The only hedge against automation is CAPITAL OWNERSHIP i.e. owning the companies that have their productivity skyrocket. Seek equity, not cash.</p>
+<p>It's way better to be the guy paying some other guy to automate a million jobs than to be the guy being payed to automate the jobs. Because, eventually, his time will come too.</p>
+</div>
+
+
+  </section>
+  <footer class="footer">
+    <hr/>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2022</p>
+  </footer>
+</body>
+
+</html>

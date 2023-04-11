@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=f53db86a1380e7b64ec2">
+  <link rel="stylesheet" href="https://analog-alex.github.io/list.css?h=cb84a49eae86eda412d5">
+  <link rel="stylesheet" href="https://analog-alex.github.io/blog-page.css?h=8c725e40fdc86dd3a578">
+  <script>
+    // function that checks for the user preference for a dark mode
+    var checkForPreference = () => {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    // function that sets SASS values and icons color depending on the preference -- boolean 'dark'
+    var setTheme = (dark) => {
+      icons = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6']
+
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        icons.forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-dark");
+        });
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        icons.forEach(x => {
+          document.getElementById(x).setAttribute( "class", "icon-light");
+        });
+      }
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        setTheme(event.matches);
+    });
+
+    // first thing is to set the theme, either light of dark mode
+    window.addEventListener('load', function () {
+      setTheme(checkForPreference())
+    });
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <span class="banner"><a class="banner-link" href="/">Analog Alex</a></span>
+    <p class="subbanner">Regular Updates</p>
+  </header>
+  <section class="container">
+    
+<h1>Welcome</h1>
+
+<span>
+    <p>
+        Learn more about me <a href="/about">here</a>.
+    </p>
+    
+    <p>
+        Read some of my articles <a href="/blog">here</a>.
+    </p>
+    
+    <p>
+        Some text in PT but mostly in EN.
+    </p>
+</span>
+
+
+<br/>
+
+<section class="icons-list">
+    <a href="https://github.com/analog-alex">                                 <img id="icon2" src="https://analog-alex.github.io/icons/github.png" width="48" height="48" /></a>
+    <a href="https://www.linkedin.com/in/miguel-alexandre-carvalho-71b4b6129"><img id="icon1" src="https://analog-alex.github.io/icons/linkedin.png" width="48" height="48" /></a>
+    <a href="https://www.youtube.com/channel/UCU6-RDrAxxdCJUBtlhF8SZA">       <img id="icon3" src="https://analog-alex.github.io/icons/youtube.png" width="48" height="48" /></a>
+    <a href="https://www.instagram.com/miguel_alexandre0/">                   <img id="icon4" src="https://analog-alex.github.io/icons/instagram.png" width="48" height="48" /></a>
+    <a href="default.asp">                                                    <img id="icon5" src="https://analog-alex.github.io/icons/twitter.svg" width="48" height="48" /></a>
+    <br/>
+    <a href="mailto:mumbleinout@gmail.com"><img id="icon6" src="https://analog-alex.github.io/icons/gmail.svg" width="48" height="48" /></a>
+</section>
+
+
+  </section>
+  <footer class="footer">
+    <hr/>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2022</p>
+  </footer>
+</body>
+
+</html>

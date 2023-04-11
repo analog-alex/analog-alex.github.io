@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://analog-alex.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://analog-alex.github.io/about/</loc>
+    </url>
+    <url>
+        <loc>https://analog-alex.github.io/blog/</loc>
+    </url>
+    <url>
+        <loc>https://analog-alex.github.io/blog/automation/</loc>
+        <lastmod>2022-05-04</lastmod>
+    </url>
+    <url>
+        <loc>https://analog-alex.github.io/blog/jogar-bem/</loc>
+        <lastmod>2018-07-17</lastmod>
+    </url>
+    <url>
+        <loc>https://analog-alex.github.io/blog/why-zola/</loc>
+        <lastmod>2022-04-14</lastmod>
+    </url>
+</urlset>
