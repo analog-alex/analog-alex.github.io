@@ -1,212 +1,444 @@
-@font-face 
-  font-family: 'raleway'
-  src: url('./fonts/Raleway/Raleway-VariableFont_wght.ttf')
+@font-face
+  font-family: 'Raleway'
+  src: url('./fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype')
+  font-display: swap
 
-@font-face 
-  font-family: 'roboto'
-  src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
+@font-face
+  font-family: 'Montserrat'
+  src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype')
+  font-display: swap
 
-/* variables */
-$breakpoint-dimension: 768px
+$breakpoint: 760px
+$content-width: 720px
+$wide-content-width: 880px
 
-$background-color: #F0F0F0
-$background-color-dark: #232323
+:root
+  --color-background: #f6f1e8
+  --color-surface: rgba(255, 252, 246, 0.86)
+  --color-surface-strong: #fffaf1
+  --color-text: #181512
+  --color-muted: #665d52
+  --color-border: rgba(24, 21, 18, 0.12)
+  --color-accent: #a54924
+  --color-accent-strong: #743018
+  --color-shadow: rgba(61, 37, 19, 0.12)
+  --font-heading: 'Raleway', system-ui, sans-serif
+  --font-body: 'Montserrat', system-ui, sans-serif
+  --radius-large: 28px
+  --radius-medium: 18px
+  --space-page: clamp(1.25rem, 4vw, 3.5rem)
 
-$text-color: #000000
-$text-color-dark: #F0F0F0
+:root[data-theme='dark']
+  --color-background: #171412
+  --color-surface: rgba(31, 27, 24, 0.88)
+  --color-surface-strong: #241f1b
+  --color-text: #f5efe6
+  --color-muted: #c6b8a8
+  --color-border: rgba(245, 239, 230, 0.14)
+  --color-accent: #f0a36d
+  --color-accent-strong: #ffc79f
+  --color-shadow: rgba(0, 0, 0, 0.34)
 
-$footer-text-color: #2F4F4F
-$footer-text-color-dark: #F0F0F0
+*
+  box-sizing: border-box
 
-$banner-color: #ffcc00   
-$banner-color-dark: #222222 
-
-html[data-theme="light"] 
-  --color-background: #{$background-color}
-  --color-text: #{$text-color}
-  --color-footer-text: #{$footer-text-color}
-  --banner-color: #{$banner-color}
-  --flag-value: 0
-  --lightBtn: #FE016C
-  --lightBg: #fff
-  --lightColor: #232323
-
-
-html[data-theme="dark"] 
-  --color-background: #{$background-color-dark}
-  --color-text: #{$text-color-dark}
-  --color-footer-text: #{$footer-text-color-dark}
-  --banner-color: #{$banner-color-dark}
-  --flag-value: 1
-  --lightBtn: #FFBD07
-  --lightBg: #232323
-  --lightColor: #fff
-
-
-/* general tags */
-
-
-a
-  color: var(--color-text)
-  font-family: 'roboto'
-
-p
-  font-family: 'roboto'
-  font-size: 16px
-
-h1
-  font-family: 'raleway'
-
-h2
-  font-family: 'raleway'
-
-h3
-  font-family: 'raleway'  
+html
+  min-height: 100%
+  background: var(--color-background)
 
 body
   min-height: 100vh
-  margin: 0px
+  margin: 0
   display: flex
   flex-direction: column
   color: var(--color-text)
-  background-color: var(--color-background)
+  background: radial-gradient(circle at top left, rgba(165, 73, 36, 0.18), transparent 32rem), linear-gradient(135deg, rgba(255, 255, 255, 0.24), transparent 28rem), var(--color-background)
+  font-family: var(--font-body)
+  font-size: 17px
+  line-height: 1.75
+  text-rendering: optimizeLegibility
 
-.info-text
-  font-family: 'raleway'
-  font-size: 12px
-  color: var(--color-footer-text)
+body::before
+  content: ''
+  position: fixed
+  inset: 0
+  pointer-events: none
+  background-image: linear-gradient(rgba(24, 21, 18, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 21, 18, 0.035) 1px, transparent 1px)
+  background-size: 56px 56px
+  mask-image: linear-gradient(to bottom, black, transparent 70%)
 
-.icon-light
-  filter: invert(0)
+a
+  color: var(--color-accent-strong)
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 45%, transparent)
+  text-decoration-thickness: 0.08em
+  text-underline-offset: 0.22em
+  transition: color 160ms ease, text-decoration-color 160ms ease, transform 160ms ease, border-color 160ms ease, background 160ms ease
 
-.icon-dark
-  filter: invert(1)
+a:hover
+  color: var(--color-accent)
+  text-decoration-color: currentColor
 
-/* general class structure */
+p
+  margin: 0 0 1.1rem
 
-/******/
-Desktop classes
-/******/
+h1,
+h2,
+h3
+  margin: 0
+  font-family: var(--font-heading)
+  line-height: 1.06
+  letter-spacing: -0.04em
 
-@media (min-width: $breakpoint-dimension)
-  .container
-    display: block
-    margin-left: auto
-    margin-right: auto
-    width: 50%
+h1
+  max-width: 12ch
+  font-size: clamp(3rem, 8vw, 5.8rem)
+  font-weight: 800
 
-  .header
-    text-align: center
-    padding-top: 20px
-    padding-bottom: 10px
-    height: 120px
-    margin-bottom: 40px
-    background-color: var(--banner-color)
-    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
+h2
+  font-size: clamp(1.5rem, 3vw, 2.15rem)
+  font-weight: 760
 
-  .banner
-    font-family: 'raleway'
-    font-size: 60px
-    color: var(--color-text)
-    font-weight: bold
+h3
+  font-size: 1.3rem
+  font-weight: 720
 
-  .icons-list
-    text-align: center
+strong
+  font-weight: 760
 
-  .footer
-    margin-top: auto
-    height: 120px
-    text-align: center
+img
+  max-width: 100%
+  height: auto
 
+.header
+  padding: var(--space-page) var(--space-page) 0
 
-/******/
-Phone and Tablet classes
-/******/
-
-@media (max-width: $breakpoint-dimension)
-  .container
-    display: block
-    margin-left: auto
-    margin-right: auto
-    width: 90%
-
-  .header
-    text-align: center
-    padding-top: 10px
-    height: 80px
-    margin-bottom: 40px
-    background-color: var(--banner-color)
-    box-shadow: 0 4px 4px -2px rgba(0,0,0,.4)
-
-  .banner
-    font-family: 'raleway'
-    font-size: 40px
-    color: var(--color-text)
-    font-weight: bold
-
-  .subbanner
-    font-size: 10px
-
-  .icons-list
-    text-align: center
-
-  .footer
-    margin-top: auto
-    height: 120px
-    text-align: center
-    padding-top: 10px
-
+.header-inner
+  width: min(100%, #{$wide-content-width})
+  margin: 0 auto
+  padding: 1rem 0
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1.25rem
+  border-bottom: 1px solid var(--color-border)
 
 .banner-link
-  color: var(--color-text) !important
+  color: var(--color-text)
+  font-family: var(--font-heading)
+  font-size: clamp(1.2rem, 4vw, 1.65rem)
+  font-weight: 830
+  letter-spacing: -0.04em
   text-decoration: none
 
-/* checkbox */
-input[type=checkbox] 
-  height: 0
-  width: 0
-  visibility: hidden
+.subbanner
+  margin: 0
+  color: var(--color-muted)
+  font-size: 0.76rem
+  font-weight: 700
+  letter-spacing: 0.18em
+  text-transform: uppercase
 
-label 
-  cursor: pointer
-  text-indent: -9999px
-  width: 55px
-  height: 30px
-  background: var(--lightBtn)
+.header-actions
   display: flex
-  justify-content: center
   align-items: center
-  -webkit-border-radius: 100px
-  -moz-border-radius: 100px
-  border-radius: 100px
+  gap: 0.75rem
+
+.site-nav
+  display: flex
+  align-items: center
+  gap: 0.25rem
+  padding: 0.2rem
+  border: 1px solid var(--color-border)
+  border-radius: 999px
+  background: color-mix(in srgb, var(--color-surface-strong) 74%, transparent)
+
+.site-nav a
+  padding: 0.45rem 0.72rem
+  border-radius: 999px
+  color: var(--color-muted)
+  font-size: 0.78rem
+  font-weight: 760
+  text-decoration: none
+
+.site-nav a:hover
+  color: var(--color-text)
+  background: var(--color-surface-strong)
+
+.theme-toggle
+  appearance: none
+  min-width: 4.4rem
+  padding: 0.65rem 0.9rem
+  border: 1px solid var(--color-border)
+  border-radius: 999px
+  color: var(--color-text)
+  background: var(--color-surface-strong)
+  box-shadow: 0 10px 24px var(--color-shadow)
+  cursor: pointer
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: 0.42rem
+  font-family: var(--font-body)
+  font-size: 0.78rem
+  font-weight: 760
+  letter-spacing: 0.08em
+  text-transform: uppercase
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease
+
+.theme-toggle-icon
+  width: 1rem
+  display: inline-flex
+  justify-content: center
+  color: var(--color-accent-strong)
+  font-size: 1rem
+  line-height: 1
+  transform: translateY(-0.02rem)
+
+.theme-toggle:hover
+  transform: translateY(-2px)
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border))
+
+.theme-toggle:focus-visible
+  outline: 3px solid color-mix(in srgb, var(--color-accent) 40%, transparent)
+  outline-offset: 3px
+
+.container
+  width: min(calc(100% - (var(--space-page) * 2)), #{$content-width})
+  margin: 0 auto
+  padding: clamp(2.25rem, 6vw, 4.75rem) 0
+  flex: 1
+
+.intro-card,
+.page-card,
+.article
   position: relative
+  padding: clamp(1.4rem, 4.5vw, 3rem)
+  border: 1px solid var(--color-border)
+  border-radius: var(--radius-large)
+  background: var(--color-surface)
+  box-shadow: 0 24px 70px var(--color-shadow)
+  backdrop-filter: blur(18px)
 
+.page-card-wide
+  width: min(100%, #{$wide-content-width})
 
-label:after 
+.intro-card
+  overflow: hidden
+
+.intro-card::after
   content: ''
-  background: #fff
-  width: 20px
-  height: 20px
-  -webkit-border-radius: 50%
-  -moz-border-radius: 50%
-  border-radius: 50%
   position: absolute
-  top: 5px
-  left: 4px
-  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms
+  right: clamp(1rem, 4vw, 2.6rem)
+  top: clamp(1rem, 4vw, 2.6rem)
+  width: clamp(3.5rem, 10vw, 6rem)
+  aspect-ratio: 1
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent)
+  border-radius: 50%
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 65%)
 
+.eyebrow
+  margin: 0 0 0.85rem
+  color: var(--color-accent-strong)
+  font-size: 0.78rem
+  font-weight: 800
+  letter-spacing: 0.14em
+  text-transform: uppercase
 
-input:checked + label 
-  background: #FFBD07
+.home-title
+  max-width: 9ch
+  font-size: clamp(3.25rem, 9vw, 6.1rem)
 
+.intro-copy
+  max-width: 31rem
+  margin-top: clamp(1.1rem, 3vw, 1.8rem)
+  color: var(--color-muted)
+  font-size: clamp(1rem, 2vw, 1.12rem)
 
-input:checked + label:after 
-  left: calc(100% - 5px)
-  -webkit-transform: translateX(-100%)
-  -moz-transform: translateX(-100%)
-  -ms-transform: translateX(-100%)
-  -o-transform: translateX(-100%)
-  transform: translateX(-100%)
+.intro-actions
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  gap: 0.8rem
+  margin-top: 1.45rem
 
-.switch-info
-  margin-bottom: 0px
+.button-link,
+.text-link
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  min-height: 2.75rem
+  font-weight: 800
+  text-decoration: none
+
+.button-link
+  padding: 0.72rem 1.05rem
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, var(--color-border))
+  border-radius: 999px
+  color: var(--color-surface-strong)
+  background: var(--color-accent-strong)
+  box-shadow: 0 12px 28px var(--color-shadow)
+
+.button-link:hover
+  color: var(--color-surface-strong)
+  background: var(--color-accent)
+  transform: translateY(-2px)
+
+.text-link
+  color: var(--color-accent-strong)
+
+.icons-list
+  display: flex
+  flex-wrap: wrap
+  gap: 0.65rem
+  margin-top: 1rem
+  justify-content: center
+
+.social-link
+  width: 3.65rem
+  height: 3.65rem
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  border: 1px solid var(--color-border)
+  border-radius: 1.1rem
+  background: var(--color-surface-strong)
+  box-shadow: 0 12px 28px var(--color-shadow)
+  text-decoration: none
+
+.social-link:hover
+  transform: translateY(-3px)
+  border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-border))
+
+.social-link img
+  width: 1.65rem
+  height: 1.65rem
+  object-fit: contain
+
+:root[data-theme='dark'] .social-link img
+  filter: invert(1)
+
+.article-year
+  margin-top: clamp(2rem, 5vw, 3rem)
+
+.article-list
+  margin: 1rem 0 0
+  padding: 0
+  list-style: none
+
+.article-list li
+  border-top: 1px solid var(--color-border)
+
+.article-list a
+  display: flex
+  padding: 1rem 0
+  color: var(--color-text)
+  font-size: clamp(1.08rem, 2vw, 1.3rem)
+  font-weight: 720
+  text-decoration: none
+
+.article-list a:hover
+  color: var(--color-accent-strong)
+  transform: translateX(0.2rem)
+
+.article-header
+  margin-bottom: clamp(1.8rem, 5vw, 3rem)
+
+.title
+  max-width: 11ch
+  font-size: clamp(3rem, 10vw, 6.2rem)
+
+.page-card h1
+  max-width: 12ch
+  margin-bottom: 1.6rem
+  font-size: clamp(2.6rem, 7vw, 4.8rem)
+
+.date-line
+  margin-bottom: 0.9rem
+  color: var(--color-muted)
+  font-size: 0.78rem
+  font-weight: 760
+  letter-spacing: 0.15em
+  text-transform: uppercase
+
+.article-body
+  font-size: clamp(1rem, 1.8vw, 1.1rem)
+
+.article-body p,
+.page-card p
+  color: var(--color-muted)
+
+.article-body p + p
+  margin-top: 1.2rem
+
+.article-body img
+  display: block
+  margin: 2.2rem auto
+  border-radius: var(--radius-medium)
+  box-shadow: 0 18px 42px var(--color-shadow)
+
+.footer
+  width: min(calc(100% - (var(--space-page) * 2)), #{$wide-content-width})
+  margin: 0 auto
+  padding: 0 0 var(--space-page)
+  text-align: center
+
+.footer-rule
+  height: 1px
+  margin-bottom: 1.5rem
+  background: var(--color-border)
+
+.info-text
+  margin: 0.35rem 0
+  color: var(--color-muted)
+  font-size: 0.82rem
+
+@media (max-width: $breakpoint)
+  body
+    font-size: 16px
+
+  .header-inner
+    align-items: flex-start
+    flex-direction: column
+    gap: 0.9rem
+
+  .header-actions
+    width: 100%
+    align-items: stretch
+    justify-content: space-between
+    gap: 0.55rem
+
+  .site-nav
+    flex: 1
+    justify-content: space-between
+
+  .site-nav a
+    padding: 0.45rem 0.58rem
+    font-size: 0.74rem
+
+  .theme-toggle
+    min-width: 4rem
+
+  .container
+    width: min(calc(100% - 2rem), #{$content-width})
+    padding: 1.9rem 0 2.7rem
+
+  .intro-card,
+  .page-card,
+  .article
+    padding: 1.25rem
+    border-radius: 22px
+
+  .intro-card::after
+    opacity: 0.45
+
+  .home-title
+    max-width: 8ch
+    font-size: clamp(3rem, 15vw, 4.4rem)
+
+  .page-card h1,
+  .title
+    font-size: clamp(2.8rem, 13vw, 4rem)
+
+  .social-link
+    width: 3.55rem
+    height: 3.55rem

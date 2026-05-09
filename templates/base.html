@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>analog-alex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>{% block title %}analog-alex{% endblock title %}</title>
   <link rel="stylesheet" href="{{ get_url(path="style.css", cachebust=true) }}">
-  <link rel="stylesheet" href="{{ get_url(path="list.css", cachebust=true) }}">
-  <link rel="stylesheet" href="{{ get_url(path="blog-page.css", cachebust=true) }}">
   <script>
-    // function that checks for the user preference for a dark mode
-    var checkForPreference = () => {
-      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    }
+    const storedTheme = localStorage.getItem('theme');
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-    // function that sets SASS values and icons color depending on the preference -- boolean 'dark'
-    var setTheme = (dark) => {
-      icons = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6']
-
-      if (dark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        icons.forEach(x => {
-          document.getElementById(x).setAttribute( "class", "icon-dark");
-        });
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        icons.forEach(x => {
-          document.getElementById(x).setAttribute( "class", "icon-light");
-        });
-      }
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        setTheme(event.matches);
-    });
-
-    // first thing is to set the theme, either light of dark mode
-    window.addEventListener('load', function () {
-      setTheme(checkForPreference())
-    });
+    document.documentElement.dataset.theme = storedTheme || preferredTheme;
   </script>
 </head>
-
 <body>
   <header class="header">
-    <span class="banner"><a class="banner-link" href="/">Analog Alex</a></span>
-    <p class="subbanner">Regular Updates</p>
+    <div class="header-inner">
+      <div>
+        <a class="banner-link" href="/">Analog Alex</a>
+        <p class="subbanner">Regular Updates</p>
+      </div>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/blog">Articles</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
   </header>
-  <section class="container">
-    {% block content %} {% endblock %}
-  </section>
+
+  <main class="container">
+    {% block content %}{% endblock content %}
+  </main>
+
   <footer class="footer">
-    <hr/>
+    <div class="footer-rule"></div>
     <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
     <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
-    <p class="info-text">@2022</p>
+    <p class="info-text">@2025</p>
   </footer>
-</body>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+    const themeToggleText = document.querySelector('.theme-toggle-text');
 
+    function setTheme(theme) {
+      const isDark = theme === 'dark';
+
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggleIcon.textContent = isDark ? '☀' : '☾';
+      themeToggleText.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    setTheme(document.documentElement.dataset.theme);
+
+    themeToggle.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
 </html>
