@@ -2,8 +2,13 @@
 
 {% block content %}
 <section class="intro-card" aria-labelledby="welcome-title">
+  <img class="hero-instrument" src="{{ get_url(path="oscillator.png") }}" alt="" width="720" height="720" aria-hidden="true">
+
   <p class="eyebrow">Lisbon based software engineer</p>
-  <h1 id="welcome-title" class="home-title">Analog<br>Alex</h1>
+  <h1 id="welcome-title" class="home-title">
+    <span class="home-title-word home-title-word-primary">Analog</span>
+    <span class="home-title-word home-title-word-secondary">Alex</span>
+  </h1>
 
   <div class="intro-copy">
     <p>

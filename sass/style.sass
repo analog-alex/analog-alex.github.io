@@ -87,7 +87,7 @@ h3
   margin: 0
   font-family: var(--font-heading)
   line-height: 1.06
-  letter-spacing: -0.04em
+  letter-spacing: 0
 
 h1
   max-width: 12ch
@@ -127,7 +127,7 @@ img
   font-family: var(--font-heading)
   font-size: clamp(1.2rem, 4vw, 1.65rem)
   font-weight: 830
-  letter-spacing: -0.04em
+  letter-spacing: 0
   text-decoration: none
 
 .subbanner
@@ -223,67 +223,91 @@ img
   width: min(100%, #{$wide-content-width})
 
 .intro-card
-  overflow: hidden
+  overflow: visible
 
-.intro-card::after
-  content: ''
+.hero-instrument
   position: absolute
-  right: clamp(1rem, 4vw, 2.6rem)
-  top: clamp(1rem, 4vw, 2.6rem)
-  width: clamp(3.5rem, 10vw, 6rem)
-  aspect-ratio: 1
-  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent)
-  border-radius: 50%
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 65%)
+  z-index: 0
+  right: clamp(-5.8rem, -8vw, -3.6rem)
+  top: clamp(-5rem, -7vw, -3rem)
+  width: clamp(31.5rem, 66vw, 43.5rem)
+  max-width: none
+  opacity: 0.72
+  pointer-events: none
+  transform: rotate(5deg)
+  filter: saturate(0.72) contrast(0.96) drop-shadow(0 18px 34px var(--color-shadow))
+
+:root[data-theme='dark'] .hero-instrument
+  opacity: 0.5
+  filter: saturate(0.55) contrast(0.9) brightness(0.82) drop-shadow(0 22px 38px var(--color-shadow))
+
+.intro-card > :not(.hero-instrument)
+  position: relative
+  z-index: 1
 
 .eyebrow
-  margin: 0 0 0.85rem
+  max-width: 32rem
+  margin: 0 0 1.05rem
   color: var(--color-accent-strong)
-  font-size: 0.78rem
+  font-size: 0.74rem
   font-weight: 800
   letter-spacing: 0.14em
   text-transform: uppercase
 
 .home-title
-  max-width: 9ch
-  font-size: clamp(3.25rem, 9vw, 6.1rem)
+  max-width: 8.6ch
+  font-size: clamp(3.45rem, 8vw, 5.85rem)
+  line-height: 0.88
+
+.home-title-word
+  display: block
+
+.home-title-word-primary
+  font-weight: 840
+
+.home-title-word-secondary
+  margin-top: -0.02em
+  color: color-mix(in srgb, var(--color-text) 91%, var(--color-accent))
+  font-weight: 620
 
 .intro-copy
-  max-width: 31rem
-  margin-top: clamp(1.1rem, 3vw, 1.8rem)
+  max-width: 30rem
+  margin-top: clamp(1.45rem, 3.3vw, 2rem)
   color: var(--color-muted)
-  font-size: clamp(1rem, 2vw, 1.12rem)
+  font-size: clamp(0.98rem, 1.7vw, 1.08rem)
 
 .intro-actions
   display: flex
   align-items: center
   flex-wrap: wrap
-  gap: 0.8rem
-  margin-top: 1.45rem
+  gap: 0.95rem
+  margin-top: 1.35rem
 
 .button-link,
 .text-link
   display: inline-flex
   align-items: center
   justify-content: center
-  min-height: 2.75rem
-  font-weight: 800
+  min-height: 2.55rem
+  font-size: 0.95rem
+  font-weight: 760
   text-decoration: none
 
 .button-link
-  padding: 0.72rem 1.05rem
-  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, var(--color-border))
+  padding: 0.62rem 0.92rem
+  border: 1px solid color-mix(in srgb, var(--color-accent) 38%, var(--color-border))
   border-radius: 999px
-  color: var(--color-surface-strong)
-  background: var(--color-accent-strong)
-  box-shadow: 0 12px 28px var(--color-shadow)
+  color: var(--color-accent-strong)
+  background: color-mix(in srgb, var(--color-surface-strong) 42%, transparent)
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-shadow) 58%, transparent)
 
 .button-link:hover
-  color: var(--color-surface-strong)
-  background: var(--color-accent)
+  color: var(--color-text)
+  background: var(--color-surface-strong)
   transform: translateY(-2px)
 
 .text-link
+  min-height: auto
   color: var(--color-accent-strong)
 
 .icons-list
@@ -333,7 +357,7 @@ img
   padding: 1rem 0
   color: var(--color-text)
   font-size: clamp(1.08rem, 2vw, 1.3rem)
-  font-weight: 720
+  font-weight: 520
   text-decoration: none
 
 .article-list a:hover
@@ -428,12 +452,15 @@ img
     padding: 1.25rem
     border-radius: 22px
 
-  .intro-card::after
-    opacity: 0.45
+  .hero-instrument
+    right: -5rem
+    top: -3.3rem
+    width: 27.9rem
+    opacity: 0.17
 
   .home-title
-    max-width: 8ch
-    font-size: clamp(3rem, 15vw, 4.4rem)
+    max-width: 7.8ch
+    font-size: clamp(3.2rem, 14vw, 4.35rem)
 
   .page-card h1,
   .title
