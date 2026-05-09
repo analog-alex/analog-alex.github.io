@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
+{% block title %}{{ section.title }} | analog-alex{% endblock title %}
+
 {% block content %}
-<h1>{{ section.title }}</h1>
-{% for year, pages in section.pages | group_by(attribute="year") %}
-<h2>{{ year }}</h2>
-<ul>
-  {% for page in pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+<section class="page-card page-card-wide">
+  <h1>{{ section.title }}</h1>
+
+  {% for year, pages in section.pages | group_by(attribute="year") %}
+  <section class="article-year" aria-labelledby="year-{{ year }}">
+    <h2 id="year-{{ year }}">{{ year }}</h2>
+    <ul class="article-list">
+      {% for page in pages %}
+      <li>
+        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
   {% endfor %}
-</ul>
-{% endfor %}
+</section>
 {% endblock content %}
