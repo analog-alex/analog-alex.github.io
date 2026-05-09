@@ -1,5 +1,8 @@
 name: Zola Build and Push
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -16,5 +19,5 @@ jobs:
         env:
           # Target branch
           PAGES_BRANCH: gh-pages
-          # Provide personal access token
-          TOKEN: ${{ secrets.TOKEN }}
+          # Use GitHub-provided workflow token
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
