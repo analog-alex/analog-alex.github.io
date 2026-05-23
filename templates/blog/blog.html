@@ -3,7 +3,9 @@
 {% block title %}{{ section.title }} | analog-alex{% endblock title %}
 
 {% block content %}
-<section class="page-card page-card-wide">
+<section class="page-card page-card-wide articles-card">
+  <img class="articles-visual" src="{{ get_url(path="articles-notebook-alpha.png") }}" alt="" width="1774" height="887" aria-hidden="true">
+
   <h1>{{ section.title }}</h1>
 
   {% for year, pages in section.pages | group_by(attribute="year") %}

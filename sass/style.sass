@@ -62,6 +62,7 @@ body::before
   content: ''
   position: fixed
   inset: 0
+  z-index: 0
   pointer-events: none
   background-image: linear-gradient(rgba(24, 21, 18, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 21, 18, 0.035) 1px, transparent 1px)
   background-size: 56px 56px
@@ -69,6 +70,12 @@ body::before
 
 :root[data-theme='dark'] body::before
   background-image: linear-gradient(rgba(245, 239, 230, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 239, 230, 0.045) 1px, transparent 1px)
+
+.header,
+.container,
+.footer
+  position: relative
+  z-index: 1
 
 a
   color: var(--color-accent-strong)
@@ -225,12 +232,109 @@ img
 .page-card-wide
   width: min(100%, #{$wide-content-width})
 
+.articles-card
+  min-height: clamp(30rem, 56vw, 36rem)
+  overflow: visible
+  isolation: isolate
+
+.articles-visual
+  position: absolute
+  z-index: 1
+  right: clamp(-9rem, -10vw, -5rem)
+  top: clamp(-6.5rem, -8vw, -4rem)
+  width: clamp(40rem, 78vw, 58rem)
+  max-width: none
+  pointer-events: none
+  transform: rotate(2deg)
+  filter: saturate(0.74) contrast(0.94) drop-shadow(0 18px 34px var(--color-shadow))
+  mask-image: linear-gradient(to right, transparent 0%, black 32%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 14%, black 68%, transparent 100%)
+  mask-composite: intersect
+
+:root[data-theme='dark'] .articles-visual
+  filter: saturate(0.48) contrast(0.78) brightness(0.42) drop-shadow(0 22px 38px var(--color-shadow))
+
+.articles-card > :not(.articles-visual)
+  position: relative
+  z-index: 2
+
+.articles-card h1,
+.articles-card .article-year
+  max-width: 32rem
+
+.games-card
+  min-height: clamp(29rem, 54vw, 35rem)
+  overflow: visible
+  isolation: isolate
+
+.games-visual
+  position: absolute
+  z-index: 1
+  right: clamp(-9.8rem, -11vw, -5.4rem)
+  top: clamp(-6.2rem, -8vw, -3.8rem)
+  width: clamp(39rem, 78vw, 58rem)
+  max-width: none
+  pointer-events: none
+  transform: rotate(2deg)
+  filter: saturate(0.76) contrast(0.94) drop-shadow(0 18px 34px var(--color-shadow))
+  mask-image: linear-gradient(to right, transparent 0%, black 32%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 14%, black 70%, transparent 100%)
+  mask-composite: intersect
+
+:root[data-theme='dark'] .games-visual
+  filter: saturate(0.48) contrast(0.78) brightness(0.42) drop-shadow(0 22px 38px var(--color-shadow))
+
+.games-card > :not(.games-visual)
+  position: relative
+  z-index: 2
+
+.games-card h1,
+.games-copy,
+.games-list
+  max-width: 31rem
+
+.games-copy
+  color: var(--color-muted)
+  font-size: clamp(0.98rem, 1.7vw, 1.08rem)
+
+.games-list
+  margin: clamp(1.75rem, 4vw, 2.4rem) 0 0
+  padding: 0
+  list-style: none
+
+.game-item
+  display: flex
+  align-items: center
+  justify-content: space-between
+  min-height: 4.4rem
+  padding: 1rem 0
+  border-top: 1px solid var(--color-border)
+
+.game-item:last-child
+  border-bottom: 1px solid var(--color-border)
+
+.game-item strong,
+.game-item span span
+  display: block
+
+.game-item strong
+  color: var(--color-text)
+  font-size: clamp(1.08rem, 2vw, 1.28rem)
+  font-weight: 760
+
+.game-item span span
+  margin-top: 0.18rem
+  color: var(--color-muted)
+  font-size: 0.82rem
+  font-weight: 700
+  letter-spacing: 0.12em
+  text-transform: uppercase
+
 .intro-card
   overflow: visible
+  isolation: isolate
 
 .hero-instrument
   position: absolute
-  z-index: 0
+  z-index: 1
   right: clamp(-5.8rem, -8vw, -3.6rem)
   top: clamp(-5rem, -7vw, -3rem)
   width: clamp(31.5rem, 66vw, 43.5rem)
@@ -241,12 +345,12 @@ img
   filter: saturate(0.72) contrast(0.96) drop-shadow(0 18px 34px var(--color-shadow))
 
 :root[data-theme='dark'] .hero-instrument
-  opacity: 0.5
-  filter: saturate(0.55) contrast(0.9) brightness(0.82) drop-shadow(0 22px 38px var(--color-shadow))
+  opacity: 1
+  filter: saturate(0.42) contrast(0.78) brightness(0.45) drop-shadow(0 22px 38px var(--color-shadow))
 
 .intro-card > :not(.hero-instrument)
   position: relative
-  z-index: 1
+  z-index: 2
 
 .eyebrow
   max-width: 32rem
@@ -430,12 +534,13 @@ img
 
   .header-actions
     width: 100%
+    flex-wrap: wrap
     align-items: stretch
     justify-content: space-between
     gap: 0.55rem
 
   .site-nav
-    flex: 1
+    flex: 1 1 100%
     justify-content: space-between
 
   .site-nav a
@@ -454,6 +559,32 @@ img
   .article
     padding: 1.25rem
     border-radius: 22px
+
+  .articles-card
+    min-height: 34rem
+
+  .articles-visual
+    right: -11rem
+    top: -2.2rem
+    width: 36rem
+    filter: saturate(0.7) contrast(0.92) brightness(0.9) drop-shadow(0 16px 28px var(--color-shadow))
+    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 12%, black 46%, transparent 84%)
+
+  :root[data-theme='dark'] .articles-visual
+    filter: saturate(0.45) contrast(0.78) brightness(0.4) drop-shadow(0 20px 34px var(--color-shadow))
+
+  .games-card
+    min-height: 33rem
+
+  .games-visual
+    right: -11.2rem
+    top: -2.1rem
+    width: 36rem
+    filter: saturate(0.7) contrast(0.92) brightness(0.9) drop-shadow(0 16px 28px var(--color-shadow))
+    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 12%, black 48%, transparent 84%)
+
+  :root[data-theme='dark'] .games-visual
+    filter: saturate(0.45) contrast(0.78) brightness(0.4) drop-shadow(0 20px 34px var(--color-shadow))
 
   .hero-instrument
     right: -5rem
