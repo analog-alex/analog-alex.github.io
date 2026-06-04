@@ -7,10 +7,54 @@
   <title>{% block title %}analog-alex{% endblock title %}</title>
   <link rel="stylesheet" href="{{ get_url(path="style.css", cachebust=true) }}">
   <script>
-    const storedTheme = localStorage.getItem('theme');
-    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    (function () {
+      const storageKey = 'theme';
+      const darkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const lightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
 
-    document.documentElement.dataset.theme = storedTheme || preferredTheme;
+      function isTheme(theme) {
+        return theme === 'dark' || theme === 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const theme = localStorage.getItem(storageKey);
+          return isTheme(theme) ? theme : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function getSystemTheme() {
+        if (darkScheme && darkScheme.matches) {
+          return 'dark';
+        }
+
+        if (lightScheme && lightScheme.matches) {
+          return 'light';
+        }
+
+        return null;
+      }
+
+      function getTimeTheme() {
+        const hour = new Date().getHours();
+        return hour >= 19 || hour < 7 ? 'dark' : 'light';
+      }
+
+      function resolveTheme() {
+        return getStoredTheme() || getSystemTheme() || getTimeTheme() || 'light';
+      }
+
+      window.siteTheme = {
+        darkScheme,
+        getStoredTheme,
+        resolveTheme,
+        storageKey
+      };
+
+      document.documentElement.dataset.theme = resolveTheme();
+    }());
   </script>
 </head>
 <body>
@@ -49,21 +93,48 @@
     const themeToggle = document.querySelector('.theme-toggle');
     const themeToggleIcon = document.querySelector('.theme-toggle-icon');
     const themeToggleText = document.querySelector('.theme-toggle-text');
+    const siteTheme = window.siteTheme || {};
 
-    function setTheme(theme) {
+    function updateThemeToggle(theme) {
       const isDark = theme === 'dark';
 
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem('theme', theme);
       themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       themeToggleIcon.textContent = isDark ? '☀' : '☾';
       themeToggleText.textContent = isDark ? 'Light' : 'Dark';
     }
 
-    setTheme(document.documentElement.dataset.theme);
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      updateThemeToggle(theme);
+    }
+
+    function storeTheme(theme) {
+      try {
+        localStorage.setItem(siteTheme.storageKey || 'theme', theme);
+      } catch (_) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'light');
+
+    if (siteTheme.darkScheme) {
+      const syncAutomaticTheme = () => {
+        if (!siteTheme.getStoredTheme || !siteTheme.getStoredTheme()) {
+          applyTheme(siteTheme.resolveTheme ? siteTheme.resolveTheme() : 'light');
+        }
+      };
+
+      if (siteTheme.darkScheme.addEventListener) {
+        siteTheme.darkScheme.addEventListener('change', syncAutomaticTheme);
+      } else if (siteTheme.darkScheme.addListener) {
+        siteTheme.darkScheme.addListener(syncAutomaticTheme);
+      }
+    }
 
     themeToggle.addEventListener('click', () => {
-      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
     });
   </script>
 </body>
