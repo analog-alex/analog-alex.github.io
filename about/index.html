@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>About Me | analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=049f723cd7ba75d04858">
+  <script>
+    (function () {
+      const storageKey = 'theme';
+      const darkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const lightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+
+      function isTheme(theme) {
+        return theme === 'dark' || theme === 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const theme = localStorage.getItem(storageKey);
+          return isTheme(theme) ? theme : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function getSystemTheme() {
+        if (darkScheme && darkScheme.matches) {
+          return 'dark';
+        }
+
+        if (lightScheme && lightScheme.matches) {
+          return 'light';
+        }
+
+        return null;
+      }
+
+      function getTimeTheme() {
+        const hour = new Date().getHours();
+        return hour >= 19 || hour < 7 ? 'dark' : 'light';
+      }
+
+      function resolveTheme() {
+        return getStoredTheme() || getSystemTheme() || getTimeTheme() || 'light';
+      }
+
+      window.siteTheme = {
+        darkScheme,
+        getStoredTheme,
+        resolveTheme,
+        storageKey
+      };
+
+      document.documentElement.dataset.theme = resolveTheme();
+    }());
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <a class="banner-link" href="/">Analog Alex</a>
+        <p class="subbanner">Regular Updates</p>
+      </div>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/blog">Articles</a>
+          <a href="/games">Games</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+<article class="page-card">
+    <h1>About me</h1>
+
+    <p>
+        Hey, my name is
+        <strong
+            >Miguel Alexandre and I'm a Lisbon based software engineer</strong
+        >.
+    </p>
+    <p>
+        I've been doing backend web development for about 10 years now, but
+        really want to branch out. I want to do deep dives on systems
+        programming, game dev, deep learning infrastructure and generally
+        high-performance code with a dash of GPU programming. As of now, of
+        course, I am also engaging heavily with vibe coding and agentic
+        workflows. I find that they can really speed up my workflow, and go from
+        idea to implementation much faster. Though, I still do a lot of trad
+        coding.
+        <strong>What you build you understand.</strong>
+        I also like to talk about football and other miscellany.
+    </p>
+
+    <p>
+        This website is a static page made in Zola! I like Zola because it is
+        easy and fast. I like static pages because <i>same</i>.
+    </p>
+    <p>
+        All of this is really a kind of an experiment in having a personal home
+        page / blog.
+    </p>
+</article>
+
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-rule"></div>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2026</p>
+  </footer>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    const siteTheme = window.siteTheme || {};
+
+    function updateThemeToggle(theme) {
+      const isDark = theme === 'dark';
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggleIcon.textContent = isDark ? '☀' : '☾';
+      themeToggleText.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      updateThemeToggle(theme);
+    }
+
+    function storeTheme(theme) {
+      try {
+        localStorage.setItem(siteTheme.storageKey || 'theme', theme);
+      } catch (_) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'light');
+
+    if (siteTheme.darkScheme) {
+      const syncAutomaticTheme = () => {
+        if (!siteTheme.getStoredTheme || !siteTheme.getStoredTheme()) {
+          applyTheme(siteTheme.resolveTheme ? siteTheme.resolveTheme() : 'light');
+        }
+      };
+
+      if (siteTheme.darkScheme.addEventListener) {
+        siteTheme.darkScheme.addEventListener('change', syncAutomaticTheme);
+      } else if (siteTheme.darkScheme.addListener) {
+        siteTheme.darkScheme.addListener(syncAutomaticTheme);
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  </script>
+</body>
+</html>

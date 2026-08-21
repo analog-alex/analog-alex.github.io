@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Signal | analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=049f723cd7ba75d04858">
+  <script>
+    (function () {
+      const storageKey = 'theme';
+      const darkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const lightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+
+      function isTheme(theme) {
+        return theme === 'dark' || theme === 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const theme = localStorage.getItem(storageKey);
+          return isTheme(theme) ? theme : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function getSystemTheme() {
+        if (darkScheme && darkScheme.matches) {
+          return 'dark';
+        }
+
+        if (lightScheme && lightScheme.matches) {
+          return 'light';
+        }
+
+        return null;
+      }
+
+      function getTimeTheme() {
+        const hour = new Date().getHours();
+        return hour >= 19 || hour < 7 ? 'dark' : 'light';
+      }
+
+      function resolveTheme() {
+        return getStoredTheme() || getSystemTheme() || getTimeTheme() || 'light';
+      }
+
+      window.siteTheme = {
+        darkScheme,
+        getStoredTheme,
+        resolveTheme,
+        storageKey
+      };
+
+      document.documentElement.dataset.theme = resolveTheme();
+    }());
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <a class="banner-link" href="/">Analog Alex</a>
+        <p class="subbanner">Regular Updates</p>
+      </div>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/blog">Articles</a>
+          <a href="/games">Games</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+<article class="article">
+  <header class="article-header">
+    <p class="date-line">2026-08-21</p>
+    <h1 class="title">Signal</h1>
+  </header>
+  <div class="article-body"><p><a href="https://acorn-horizon-zinc-rocket.grok.me/">Signal</a> is a tiny playable poly synth for the browser.</p>
+<p>There is no install step, no account, and no big wall of documentation between the first impulse and the first sound. Open it, enable audio, then play with the keyboard or the on-screen keys.</p>
+<p>The interface is deliberately close to a compact instrument panel: choose between synth and piano voices, pick a waveform, then shape the sound with filter and envelope controls. The oscilloscope and level meter make the sound visible while it is being played, which is useful but, more importantly, makes the whole thing feel alive.</p>
+<p>It includes the familiar raw ingredients: sine, triangle, sawtooth, and square waves; cutoff and resonance; attack, decay, sustain, and release. That is enough surface area to move from soft, round sounds to sharper and stranger ones without turning the tool into a DAW.</p>
+<p>The goal is not to recreate a studio full of gear. It is to make a small, tactile place for sound design and experimentation that happens to fit in a tab.</p>
+<p>Try it here: <a href="https://acorn-horizon-zinc-rocket.grok.me/">Signal</a>.</p>
+</div>
+</article>
+
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-rule"></div>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2026</p>
+  </footer>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    const siteTheme = window.siteTheme || {};
+
+    function updateThemeToggle(theme) {
+      const isDark = theme === 'dark';
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggleIcon.textContent = isDark ? '☀' : '☾';
+      themeToggleText.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      updateThemeToggle(theme);
+    }
+
+    function storeTheme(theme) {
+      try {
+        localStorage.setItem(siteTheme.storageKey || 'theme', theme);
+      } catch (_) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'light');
+
+    if (siteTheme.darkScheme) {
+      const syncAutomaticTheme = () => {
+        if (!siteTheme.getStoredTheme || !siteTheme.getStoredTheme()) {
+          applyTheme(siteTheme.resolveTheme ? siteTheme.resolveTheme() : 'light');
+        }
+      };
+
+      if (siteTheme.darkScheme.addEventListener) {
+        siteTheme.darkScheme.addEventListener('change', syncAutomaticTheme);
+      } else if (siteTheme.darkScheme.addListener) {
+        siteTheme.darkScheme.addListener(syncAutomaticTheme);
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  </script>
+</body>
+</html>

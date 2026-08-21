@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Articles | analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=049f723cd7ba75d04858">
+  <script>
+    (function () {
+      const storageKey = 'theme';
+      const darkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const lightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+
+      function isTheme(theme) {
+        return theme === 'dark' || theme === 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const theme = localStorage.getItem(storageKey);
+          return isTheme(theme) ? theme : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function getSystemTheme() {
+        if (darkScheme && darkScheme.matches) {
+          return 'dark';
+        }
+
+        if (lightScheme && lightScheme.matches) {
+          return 'light';
+        }
+
+        return null;
+      }
+
+      function getTimeTheme() {
+        const hour = new Date().getHours();
+        return hour >= 19 || hour < 7 ? 'dark' : 'light';
+      }
+
+      function resolveTheme() {
+        return getStoredTheme() || getSystemTheme() || getTimeTheme() || 'light';
+      }
+
+      window.siteTheme = {
+        darkScheme,
+        getStoredTheme,
+        resolveTheme,
+        storageKey
+      };
+
+      document.documentElement.dataset.theme = resolveTheme();
+    }());
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <a class="banner-link" href="/">Analog Alex</a>
+        <p class="subbanner">Regular Updates</p>
+      </div>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/blog">Articles</a>
+          <a href="/games">Games</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+<section class="page-card page-card-wide articles-card">
+  <img class="articles-visual" src="https://analog-alex.github.io/articles-notebook-alpha.png" alt="" width="1774" height="887" aria-hidden="true">
+
+  <h1>Articles</h1>
+
+  
+  <section class="article-year" aria-labelledby="year-2026">
+    <h2 id="year-2026">2026</h2>
+    <ul class="article-list">
+      
+      <li>
+        <a href="https://analog-alex.github.io/blog/signal/">Signal</a>
+      </li>
+      
+    </ul>
+  </section>
+  
+  <section class="article-year" aria-labelledby="year-2022">
+    <h2 id="year-2022">2022</h2>
+    <ul class="article-list">
+      
+      <li>
+        <a href="https://analog-alex.github.io/blog/automation/">Yes, you will be automated</a>
+      </li>
+      
+      <li>
+        <a href="https://analog-alex.github.io/blog/why-zola/">Why Zola?</a>
+      </li>
+      
+    </ul>
+  </section>
+  
+  <section class="article-year" aria-labelledby="year-2018">
+    <h2 id="year-2018">2018</h2>
+    <ul class="article-list">
+      
+      <li>
+        <a href="https://analog-alex.github.io/blog/jogar-bem/">Jogar Bem</a>
+      </li>
+      
+    </ul>
+  </section>
+  
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-rule"></div>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2026</p>
+  </footer>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    const siteTheme = window.siteTheme || {};
+
+    function updateThemeToggle(theme) {
+      const isDark = theme === 'dark';
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggleIcon.textContent = isDark ? '☀' : '☾';
+      themeToggleText.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      updateThemeToggle(theme);
+    }
+
+    function storeTheme(theme) {
+      try {
+        localStorage.setItem(siteTheme.storageKey || 'theme', theme);
+      } catch (_) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'light');
+
+    if (siteTheme.darkScheme) {
+      const syncAutomaticTheme = () => {
+        if (!siteTheme.getStoredTheme || !siteTheme.getStoredTheme()) {
+          applyTheme(siteTheme.resolveTheme ? siteTheme.resolveTheme() : 'light');
+        }
+      };
+
+      if (siteTheme.darkScheme.addEventListener) {
+        siteTheme.darkScheme.addEventListener('change', syncAutomaticTheme);
+      } else if (siteTheme.darkScheme.addListener) {
+        siteTheme.darkScheme.addListener(syncAutomaticTheme);
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  </script>
+</body>
+</html>

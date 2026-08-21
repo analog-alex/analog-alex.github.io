@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Games | analog-alex</title>
+  <link rel="stylesheet" href="https://analog-alex.github.io/style.css?h=049f723cd7ba75d04858">
+  <script>
+    (function () {
+      const storageKey = 'theme';
+      const darkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const lightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+
+      function isTheme(theme) {
+        return theme === 'dark' || theme === 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const theme = localStorage.getItem(storageKey);
+          return isTheme(theme) ? theme : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function getSystemTheme() {
+        if (darkScheme && darkScheme.matches) {
+          return 'dark';
+        }
+
+        if (lightScheme && lightScheme.matches) {
+          return 'light';
+        }
+
+        return null;
+      }
+
+      function getTimeTheme() {
+        const hour = new Date().getHours();
+        return hour >= 19 || hour < 7 ? 'dark' : 'light';
+      }
+
+      function resolveTheme() {
+        return getStoredTheme() || getSystemTheme() || getTimeTheme() || 'light';
+      }
+
+      window.siteTheme = {
+        darkScheme,
+        getStoredTheme,
+        resolveTheme,
+        storageKey
+      };
+
+      document.documentElement.dataset.theme = resolveTheme();
+    }());
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <a class="banner-link" href="/">Analog Alex</a>
+        <p class="subbanner">Regular Updates</p>
+      </div>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/blog">Articles</a>
+          <a href="/games">Games</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+<section class="page-card page-card-wide games-card" aria-labelledby="games-title">
+  <img class="games-visual" src="https://analog-alex.github.io/games-board-alpha.png" alt="" width="1774" height="887" aria-hidden="true">
+
+  <p class="eyebrow">Playable experiments</p>
+  <h1 id="games-title">Games</h1>
+
+  <div class="games-copy">
+    <p>Small browser games, built for fun and experimentation.</p>
+  </div>
+
+  <ul class="games-list" aria-label="Games list">
+    <li class="game-item">
+      <span>
+        <strong>Racers, Go!</strong>
+        <br/>
+        <span>Browser &middot; 2026</span>
+        <span class="game-item-desc">A browser driving game with a loose-surface rally stage and a high-speed formula circuit, built with Three.js.</span>
+      </span>
+      <span class="game-item-actions">
+        <a href="https://analog-alex.github.io/racers-go/" class="button-link" target="_blank" rel="noopener noreferrer">Play &nearr;</a>
+        <a href="https://github.com/analog-alex/racers-go" class="button-link" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </span>
+    </li>
+    <li class="game-item">
+      <span>
+        <strong>Space Wonderers</strong>
+        <br/>
+        <span>Browser &middot; 2026</span>
+        <span class="game-item-desc">A small browser flight toy with one ship, an endless star field, and a warp core, built with Three.js.</span>
+      </span>
+      <span class="game-item-actions">
+        <a href="https://analog-alex.github.io/space-wonderers/" class="button-link" target="_blank" rel="noopener noreferrer">Play &nearr;</a>
+        <a href="https://github.com/analog-alex/space-wonderers" class="button-link" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </span>
+    </li>
+    <li class="game-item">
+      <span>
+        <strong>Phobia</strong>
+        <br/>
+        <span>Browser &middot; 2026</span>
+        <span class="game-item-desc">An atmospheric browser FPS built with Bun, Babylon.js, TypeScript, and Vite.</span>
+      </span>
+      <span class="game-item-actions">
+        <a href="https://analog-alex.github.io/phobia/" class="button-link" target="_blank" rel="noopener noreferrer">Play &nearr;</a>
+        <a href="https://github.com/analog-alex/phobia" class="button-link" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </span>
+    </li>
+    <li class="game-item">
+      <span>
+        <strong>Glide.exe &mdash; Air Hockey</strong>
+        <br/>
+        <span>Browser &middot; 2026</span>
+        <span class="game-item-desc">A small browser arcade game built with Bun, Phaser, TypeScript, and Vite.</span>
+      </span>
+      <span class="game-item-actions">
+        <a href="https://analog-alex.github.io/air-hockey-extreme" class="button-link" target="_blank" rel="noopener noreferrer">Play &nearr;</a>
+        <a href="https://github.com/analog-alex/air-hockey-extreme" class="button-link" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </span>
+    </li>
+    <li class="game-item">
+      <span>
+        <strong>Curvewalker</strong>
+        <br/>
+        <span>Browser &middot; 2026</span>
+        <span class="game-item-desc">A way to live in a math world with functions.</span>
+      </span>
+      <span class="game-item-actions">
+        <a href="https://analog-alex.github.io/curvewalker/" class="button-link" target="_blank" rel="noopener noreferrer">Play &nearr;</a>
+        <a href="https://github.com/analog-alex/curvewalker" class="button-link" target="_blank" rel="noopener noreferrer">Source &nearr;</a>
+      </span>
+    </li>
+  </ul>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-rule"></div>
+    <p class="info-text">Made by <strong>Miguel Alexandre</strong></p>
+    <p class="info-text">Powered by <a href="https://www.getzola.org/">Zola</a> · ❤️ static websites</p>
+    <p class="info-text">@2026</p>
+  </footer>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggleIcon = document.querySelector('.theme-toggle-icon');
+    const themeToggleText = document.querySelector('.theme-toggle-text');
+    const siteTheme = window.siteTheme || {};
+
+    function updateThemeToggle(theme) {
+      const isDark = theme === 'dark';
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggleIcon.textContent = isDark ? '☀' : '☾';
+      themeToggleText.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      updateThemeToggle(theme);
+    }
+
+    function storeTheme(theme) {
+      try {
+        localStorage.setItem(siteTheme.storageKey || 'theme', theme);
+      } catch (_) {}
+    }
+
+    applyTheme(document.documentElement.dataset.theme || 'light');
+
+    if (siteTheme.darkScheme) {
+      const syncAutomaticTheme = () => {
+        if (!siteTheme.getStoredTheme || !siteTheme.getStoredTheme()) {
+          applyTheme(siteTheme.resolveTheme ? siteTheme.resolveTheme() : 'light');
+        }
+      };
+
+      if (siteTheme.darkScheme.addEventListener) {
+        siteTheme.darkScheme.addEventListener('change', syncAutomaticTheme);
+      } else if (siteTheme.darkScheme.addListener) {
+        siteTheme.darkScheme.addListener(syncAutomaticTheme);
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  </script>
+</body>
+</html>
